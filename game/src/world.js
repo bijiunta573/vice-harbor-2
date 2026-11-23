@@ -230,7 +230,7 @@ export class World {
     trunk.rotation.z = (rng() - 0.5) * 0.16;
     this.scene.add(trunk);
     const frondMat = new THREE.MeshStandardMaterial({ color: 0x3f9e4d, roughness: 1, side: THREE.DoubleSide });
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 5; i++) {
       const frond = new THREE.Mesh(new THREE.PlaneGeometry(3.6, 0.9), frondMat);
       const a = (i / 5) * Math.PI * 2;
       frond.position.set(x + Math.cos(a) * 1.4, 5.7, z + Math.sin(a) * 1.4);

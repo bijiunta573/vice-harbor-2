@@ -89,7 +89,7 @@ export class Hud {
     $('mname').textContent = tracker.name;
     $('mstage').textContent = `STAGE ${tracker.stage}/${tracker.stages}`;
     $('mobj').textContent = tracker.surviveLeft != null
-      ? `${tracker.objective} — ${tracker.surviveLeft}s`
+      ? `${tracker.objective} — ${Math.ceil(tracker.surviveLeft)}s`
       : tracker.objective;
   }
 

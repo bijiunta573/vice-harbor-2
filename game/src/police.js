@@ -209,8 +209,9 @@ export class PoliceSystem {
       const dx = player.x - o.x, dz = player.z - o.z;
       const dist = Math.hypot(dx, dz);
       if (dist > 9) {
-        o.x += (dx / dist) * 3.4 * dt;
-        o.z += (dz / dist) * 3.4 * dt;
+        const inv = 1 / Math.max(dist, 0.01);
+        o.x += dx * inv * 3.4 * dt;
+        o.z += dz * inv * 3.4 * dt;
         o.walkPhase += dt * 7;
       } else if (dist < 3.2 && !player.inCar) {
         contact = true;

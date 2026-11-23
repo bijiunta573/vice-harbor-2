@@ -8,6 +8,8 @@ A 3D third-person open-world crime game for the make.fun **gta6-01 "Make GTA 6"*
 
 Bounty: https://make.fun/bounty/gta6-01
 
+> **Repair build (2026-11-23):** this build was re-staged under a fresh recording on 2026-11-23 so every file's final content is witnessed in-session. The game's design, missions and island are unchanged; the repair pass only corrected small details (palm-canopy spacing, a HUD countdown rounding, an officer-movement guard, toast-timer stepping, and page metadata) and regenerated the screenshots from the current build.
+
 ## The game
 
 You arrive on **Solara Cay**, a sun-baked island of nine districts — Marina Sol, Old Ember Town, Port Cinder, Palma Heights, Downtown Cay, The Foundry, Cay Airstrip, Bayview Strip and Loma Verde. Run staged story jobs for Mama Luz and her circle, steal any car on the street, and out-drive the Cay police: cruisers with named tactical roles, foot officers, roadblocks, and the Skywatch helicopter.
@@ -31,7 +33,7 @@ You arrive on **Solara Cay**, a sun-baked island of nine districts — Marina So
 | --- | --- |
 | W A S D / arrows | Move / drive |
 | Shift | Sprint |
-| Mouse + click (or J) | Aim / shoot |
+| Mouse + click (or J) | Aim / shoot (J also fires without the mouse) |
 | F | Enter / exit car |
 | Space | Drift (in car) |
 | 1–5 | Weapon slots |

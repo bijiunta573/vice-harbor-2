@@ -657,7 +657,7 @@ function updateHud() {
   if (hudTick % 2 === 0) {
     hud.drawMinimap({ player: playerView, police, missions, traffic, packages: missions, lookoutUntil: S.lookoutUntil, now: S.crewNow });
   }
-  hud.updateTimers(1 / 60);
+  hud.updateTimers(SIM_STEP);
 }
 
 // ---------------------------------------------------------------- screenshot staging (?shot=)

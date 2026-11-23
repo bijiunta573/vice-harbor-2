@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Solara Cay — Isle of Embers: a 3D third-person open-world crime game built with three.js.">
 <link rel="icon" href="data:,">
 <title>Solara Cay — Isle of Embers</title>
 <style>
@@ -157,7 +158,7 @@
     <div id="dtext"></div>
     <div id="dhint">ENTER / CLICK ▸</div>
   </div>
-  <div id="toast" class="panel"></div>
+  <div id="toast" class="panel" role="status" aria-live="polite"></div>
   <div id="center-msg"></div>
 </div>
 
@@ -208,6 +209,7 @@
   <button class="btn" id="btn-end-ok">KEEP ROAMING</button>
 </div>
 
+<noscript><p style="position:fixed;inset:auto 16px 16px 16px;z-index:30;text-align:center">Solara Cay needs JavaScript enabled to play.</p></noscript>
 <script type="module" src="./src/main.js"></script>
 </body>
 </html>
