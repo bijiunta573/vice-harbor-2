@@ -160,7 +160,7 @@ export class Hud {
       if (this.onDialogueDone) { const f = this.onDialogueDone; this.onDialogueDone = null; f(); }
       return;
     }
-    box.style.display = '';
+    box.style.display = 'block';
     $('dspeaker').textContent = line[0];
     $('dtext').textContent = line[1];
     const hue = (line[0].charCodeAt(0) * 47) % 360;

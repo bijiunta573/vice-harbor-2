@@ -105,8 +105,8 @@ export class PoliceSystem {
     spot.position.set(0, -1, 0);
     g.add(spot); g.add(spot.target);
     spot.target.position.set(0, -30, 0);
-    const cone = new THREE.Mesh(new THREE.ConeGeometry(7, 30, 12, 1, true),
-      new THREE.MeshBasicMaterial({ color: 0xfff3c4, transparent: true, opacity: 0.13, side: THREE.DoubleSide, depthWrite: false }));
+    const cone = new THREE.Mesh(new THREE.ConeGeometry(6, 30, 12, 1, true),
+      new THREE.MeshBasicMaterial({ color: 0xfff3c4, transparent: true, opacity: 0.06, side: THREE.DoubleSide, depthWrite: false }));
     cone.position.y = -16;
     g.add(cone);
     g.position.set(player.x + 30, 30, player.z - 20);

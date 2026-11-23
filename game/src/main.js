@@ -22,11 +22,11 @@ const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPrefere
 renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
 renderer.setSize(innerWidth, innerHeight);
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
-renderer.toneMappingExposure = 1.12;
+renderer.toneMappingExposure = 1.3;
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0x3a2144);
+scene.background = new THREE.Color(0x6b3550);
 const camera = new THREE.PerspectiveCamera(62, innerWidth / innerHeight, 0.1, 1500);
 camera.position.set(0, 8, -14);
 
@@ -596,8 +596,8 @@ function stepGame(dt, now) {
 
   // ----- camera (lerped chase cam)
   const target = S.inCar ? S.inCar : { x: S.x, z: S.z, angle: S.angle };
-  const back = S.inCar ? 10.5 : 7.5;
-  const height = S.inCar ? 4.2 : 3.1;
+  const back = S.inCar ? 11.5 : 7.5;
+  const height = S.inCar ? 4.9 : 3.1;
   const desiredYaw = S.inCar ? target.angle : S.aimYaw;
   let dyaw = desiredYaw - S.camAngle;
   while (dyaw > Math.PI) dyaw -= Math.PI * 2;
@@ -664,16 +664,30 @@ function updateHud() {
 function stageShot(mode) {
   startGame(true);
   const setCar = () => {
-    const v = nearestCar(S.x, S.z, 60) || parked[0];
-    v.x = 12; v.z = 8; v.angle = 0.7; v.syncMesh();
+    const v = nearestCar(S.x, S.z, 400) || parked[0];
+    v.x = 3.4; v.z = -34; v.angle = 0.12; v.damage = 0; v.dead = false; v.syncMesh();
     S.inCar = v; v.occupied = true;
     playerMesh.visible = false;
     return v;
   };
+  const pinCruisers = (n) => {
+    // Place the first n spawned cruisers in-frame: two behind, one alongside.
+    const spots = [[-4.5, -52, 0.1], [5.5, -55, -0.08], [-7, -30, 0.5]];
+    police.units.slice(0, n).forEach((u, i) => {
+      const s = spots[i % spots.length];
+      u.vehicle.x = s[0]; u.vehicle.z = s[1]; u.vehicle.angle = s[2];
+      u.vehicle.speed = 18;
+      u.vehicle.syncMesh();
+    });
+  };
   if (mode === 'drive') {
     const v = setCar();
     v.speed = 19;
+    S.cash = 1830; S.rp = 260;
     police.setStars(2);
+    for (let i = 0; i < 2; i++) police.spawnUnit(playerViewFresh(), i);
+    pinCruisers(2);
+    S.radioOn = true;
     hud.message('Downtown Cay — evening rush.');
   } else if (mode === 'chase') {
     const v = setCar();
@@ -681,7 +695,9 @@ function stageShot(mode) {
     S.cash = 4870; S.rp = 860; S.armour = 45;
     police.setStars(5);
     for (let i = 0; i < 6; i++) police.spawnUnit(playerViewFresh(), i);
+    pinCruisers(3);
     police.spawnHeli(playerViewFresh());
+    if (police.heli) police.heli.mesh.position.set(0, 27, 18);
     missions.startNext(); missions.finishIntro();
     S.radioOn = true; sound.setRadio(false, 0);
     hud.message('SKYWATCH overhead — lose them in Palma Heights!');
@@ -697,14 +713,16 @@ function stageShot(mode) {
     S.cash = 6210; S.rp = 1450; S.armour = 70; S.health = 86;
     police.setStars(5);
     for (let i = 0; i < 7; i++) police.spawnUnit(playerViewFresh(), i);
+    pinCruisers(3);
     police.spawnOfficer(playerViewFresh(), 1);
     police.spawnHeli(playerViewFresh());
+    if (police.heli) police.heli.mesh.position.set(0, 27, 18);
     police.spawnRoadblock(playerViewFresh());
     missions.startNext(); missions.finishIntro();
     missions.active.stage = 2;
     missions.armStage();
     S.radioOn = true;
-    hud.message('MISSION 6 — the Ember Crown run. Every unit on the Cay is coming.');
+    hud.message('Every unit on the Cay is coming — get the package home!');
   }
   refreshPlayerView();
   // Settle camera behind the action for the still.

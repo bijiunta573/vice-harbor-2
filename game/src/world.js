@@ -34,10 +34,10 @@ export class World {
   }
 
   buildLights(scene) {
-    scene.fog = new THREE.Fog(0x2b1a33, 190, 620);
-    const hemi = new THREE.HemisphereLight(0xffd9a0, 0x33455e, 0.85);
+    scene.fog = new THREE.Fog(0x54304a, 210, 680);
+    const hemi = new THREE.HemisphereLight(0xffe3b0, 0x44586e, 1.25);
     scene.add(hemi);
-    const sun = new THREE.DirectionalLight(0xffb066, 1.6);
+    const sun = new THREE.DirectionalLight(0xffb066, 2.1);
     sun.position.set(-160, 120, 60);
     scene.add(sun);
     const fill = new THREE.DirectionalLight(0x7fb2ff, 0.35);
@@ -48,7 +48,7 @@ export class World {
     const skyMat = new THREE.MeshBasicMaterial({ side: THREE.BackSide, vertexColors: true });
     const pos = skyGeo.attributes.position;
     const colors = new Float32Array(pos.count * 3);
-    const top = new THREE.Color(0x2a2356), mid = new THREE.Color(0xb84a6e), low = new THREE.Color(0xff9e57);
+    const top = new THREE.Color(0x4a3a78), mid = new THREE.Color(0xd96a7e), low = new THREE.Color(0xffb066);
     const tmp = new THREE.Color();
     for (let i = 0; i < pos.count; i++) {
       const y = pos.getY(i) / 900;
